@@ -54,7 +54,7 @@ const SearchPage: NextPage = () => {
                 <div onClick={() => setSearchValue("")}>
                   <XIcon className="w-6 text-white" />
                 </div>
-                <div onClick={() => setIsFilterOpen(true)}>
+                <div>
                   <AdjustmentsIcon className="w-6 text-white" />
                 </div>
               </div>
