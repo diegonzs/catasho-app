@@ -2,10 +2,14 @@ import { CategoryBox } from "components/category-box";
 import { Input } from "components/input";
 import { Body, Title } from "components/typography";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { useStore } from "store/useStore";
 
 export const Hero = () => {
   const [value, setValue] = useState("");
+  const router = useRouter();
+  const setSearchValue = useStore((state) => state.setSearchValue);
   return (
     <div className="h-[300px] px-6 py-8 bg-[url('/images/backgrounds/hero.png')]">
       <div className="flex justify-between items-center mb-4">
@@ -25,6 +29,10 @@ export const Hero = () => {
         onChange={setValue}
         placeholder="Buscar por producto..."
         withSearchIcon
+        cb={() => {
+          setSearchValue(value);
+          router.push("/search");
+        }}
       />
       <div className="mt-6">
         <div className="flex justify-between items-center mb-4">
