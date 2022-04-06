@@ -18,7 +18,7 @@ export const useScrollBlock = (): [() => void, () => void] => {
   const blockScroll = (): void => {
     if (!body || !body.style || scrollBlocked.current) return;
     if (document == undefined) return;
-
+    if (!html) return;
     const scrollBarWidth = window.innerWidth - html.clientWidth;
     const bodyPaddingRight =
       parseInt(
@@ -41,7 +41,7 @@ export const useScrollBlock = (): [() => void, () => void] => {
   };
 
   const allowScroll = (): void => {
-    if (!body || !body.style || !scrollBlocked.current) return;
+    if (!body || !body.style || !scrollBlocked.current || !html) return;
 
     html.style.position = "";
     html.style.overflow = "";
