@@ -4,6 +4,9 @@ import { MyState } from "./useStore";
 type FilterOptions = {
   minPrice: string;
   maxPrice: string;
+  sortBy: "Precio mas alto" | "Precio mas bajo";
+  delivery: "Delivery" | "Pick Up";
+  offer: "Descuento" | "Delivery Gratis";
 };
 export interface SearchSlice {
   searchValue: string;
@@ -20,6 +23,9 @@ export const createSearchSlice = (
 ): SearchSlice => ({
   searchValue: "",
   filterOptions: {
+    sortBy: "Precio mas alto",
+    delivery: "Delivery",
+    offer: "Delivery Gratis",
     minPrice: "",
     maxPrice: "",
   },

@@ -11,6 +11,8 @@ import { useState } from "react";
 import clsx from "clsx";
 import { PriceInput } from "components/priceInput";
 import { SearchFilter } from "components/search-filter";
+import { useScrollBlock } from "hooks/use-scrolll-block";
+import { useEffect } from "react";
 
 interface PopularSearchProps {
   image: string;
@@ -32,12 +34,18 @@ const PopularSearch: FC<PopularSearchProps> = ({ image, title, category }) => {
 
 const SearchPage: NextPage = () => {
   const router = useRouter();
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
   const searchValue = useStore((state) => state.searchValue);
   const setSearchValue = useStore((state) => state.setSearchValue);
   const isFilterOpen = useStore((state) => state.isFilterOpen);
   const toggleFilter = useStore((state) => state.toggleFilterOpen);
+  const [blockScroll, allowScroll] = useScrollBlock();
+  useEffect(() => {
+    if (isFilterOpen) {
+      blockScroll();
+    } else {
+      allowScroll();
+    }
+  }, [isFilterOpen]);
   return (
     <>
       <div>

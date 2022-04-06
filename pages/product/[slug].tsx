@@ -4,6 +4,7 @@ import {
   ChevronUpIcon,
   ShareIcon,
 } from "@heroicons/react/outline";
+import { Button } from "components/button/button";
 import { Body, Title } from "components/typography";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -53,9 +54,7 @@ const ProductPage: NextPage = () => {
           content="Yellow Sweater Hype"
           className="text-secondary-dark mb-4"
         />
-        <div className="bg-gradient-to-r from-[#3AD4E0] to-[#2EB5BF] w-fit rounded p-2 mb-8">
-          <Body content="Descuento" className="text-white" />
-        </div>
+        <Button content="Descuento" classes={{ container: "mb-8" }} />
         <div className="w-full py-4 px-5 bg-[#C1C1C1] bg-opacity-10 rounded">
           <p className="text-base font-bold mb-6">Information del producto</p>
           <p className="text-sm">
@@ -72,14 +71,20 @@ const ProductPage: NextPage = () => {
       </div>
       <footer
         className="w-full fixed bottom-0 px-6 py-7 bg-white"
-        style={{ boxShadow: "0px -10px 20px rgba(0, 0, 0, 0.04);" }}
+        style={{ boxShadow: "0px -10px 20px rgba(0, 0, 0, 0.04)" }}
       >
-        <div className="w-full flex justify-center items-center bg-[#FB7C9B] py-4 rounded">
+        <Button
+          isGradient
+          isPrimary
+          classes={{
+            container: "py-4 w-full flex justify-center items-center",
+          }}
+        >
           <ChatIcon className="w-6 text-white" />
           <p className="text-sm text-white font-bold ml-3">
             Contactar por este producto
           </p>
-        </div>
+        </Button>
       </footer>
     </div>
   );

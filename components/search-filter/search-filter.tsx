@@ -1,5 +1,6 @@
 import { XIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
+import { Button } from "components/button";
 import { PriceInput } from "components/priceInput";
 import { FC } from "react";
 import { useStore } from "store/useStore";
@@ -7,29 +8,35 @@ import { useStore } from "store/useStore";
 interface ButtonSelectProps {
   isSelected?: boolean;
   content: string;
+  onClick: () => void;
 }
 
 const ButtonSelect: FC<ButtonSelectProps> = ({
   content,
   isSelected = false,
+  onClick,
 }) => {
   return (
-    <div
-      className={clsx(
-        "px-[14px] py-[10px] text-sm rounded flex justify-center items-center border",
-        isSelected
-          ? "bg-primary-two text-white border-primary-two"
-          : "bg-white text-secondary-dark border-[#C7CAD9]"
-      )}
-    >
-      {content}
-    </div>
+    <Button
+      onClick={onClick}
+      content={content}
+      isGradient={isSelected}
+      classes={{
+        content: clsx(isSelected ? "text-white" : "text-secondary-dark"),
+        container: clsx(
+          "px-[14px] py-[10px]",
+          !isSelected && "bg-white border border-[#C7CAD9]"
+        ),
+      }}
+    />
   );
 };
 
 export const SearchFilter = () => {
   const toggleFilter = useStore((state) => state.toggleFilterOpen);
-  const { minPrice, maxPrice } = useStore((state) => state.filterOptions);
+  const { minPrice, maxPrice, sortBy, offer, delivery } = useStore(
+    (state) => state.filterOptions
+  );
   const updateFilterOptions = useStore((state) => state.updateFilterOptions);
   return (
     <div
@@ -52,22 +59,46 @@ export const SearchFilter = () => {
         <div className="flex flex-col gap-4 w-full mb-6">
           <p className="text-base font-bold text-secondary-dark">Ordenar por</p>
           <div className="flex gap-3">
-            <ButtonSelect content="Precio mas alto" isSelected />
-            <ButtonSelect content="Precio mas bajo" />
+            <ButtonSelect
+              content="Precio mas alto"
+              isSelected={"Precio mas alto" === sortBy}
+              onClick={() => updateFilterOptions({ sortBy: "Precio mas alto" })}
+            />
+            <ButtonSelect
+              content="Precio mas bajo"
+              isSelected={"Precio mas bajo" === sortBy}
+              onClick={() => updateFilterOptions({ sortBy: "Precio mas bajo" })}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-4 w-full mb-6">
           <p className="text-base font-bold text-secondary-dark">Entrega</p>
           <div className="flex gap-3">
-            <ButtonSelect content="Delivery" isSelected />
-            <ButtonSelect content="Pick Up" />
+            <ButtonSelect
+              content="Delivery"
+              isSelected={"Delivery" === delivery}
+              onClick={() => updateFilterOptions({ delivery: "Delivery" })}
+            />
+            <ButtonSelect
+              content="Pick Up"
+              isSelected={"Pick Up" === delivery}
+              onClick={() => updateFilterOptions({ delivery: "Pick Up" })}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-4 w-full mb-6">
           <p className="text-base font-bold text-secondary-dark">Oferta</p>
           <div className="flex gap-3">
-            <ButtonSelect content="Descuento" isSelected />
-            <ButtonSelect content="Delivery Gratis" />
+            <ButtonSelect
+              content="Descuento"
+              isSelected={"Descuento" === offer}
+              onClick={() => updateFilterOptions({ offer: "Descuento" })}
+            />
+            <ButtonSelect
+              content="Delivery Gratis"
+              isSelected={"Delivery Gratis" === offer}
+              onClick={() => updateFilterOptions({ offer: "Delivery Gratis" })}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-4 w-full mb-8">
@@ -86,12 +117,17 @@ export const SearchFilter = () => {
             />
           </div>
         </div>
-        <button
-          className="text-white bg-primary-four w-full py-4 rounded mb-8 cursor-pointer"
+        <Button
+          content="Aplicar filtros"
+          classes={{
+            content: "text-white",
+            container: "w-full py-4 rounded mb-8",
+          }}
+          isGradient
+          isPrimary
+          // className="text-white bg-primary-four w-full py-4 rounded mb-8 cursor-pointer"
           onClick={toggleFilter}
-        >
-          Aplicar filtros
-        </button>
+        />
       </div>
     </div>
   );
