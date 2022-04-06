@@ -7,6 +7,10 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import { useStore } from "store/useStore";
 import "react-spring-bottom-sheet/dist/style.css";
+import { useState } from "react";
+import clsx from "clsx";
+import { PriceInput } from "components/priceInput";
+import { SearchFilter } from "components/search-filter";
 
 interface PopularSearchProps {
   image: string;
@@ -28,8 +32,12 @@ const PopularSearch: FC<PopularSearchProps> = ({ image, title, category }) => {
 
 const SearchPage: NextPage = () => {
   const router = useRouter();
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   const searchValue = useStore((state) => state.searchValue);
   const setSearchValue = useStore((state) => state.setSearchValue);
+  const isFilterOpen = useStore((state) => state.isFilterOpen);
+  const toggleFilter = useStore((state) => state.toggleFilterOpen);
   return (
     <>
       <div>
@@ -54,7 +62,7 @@ const SearchPage: NextPage = () => {
                 <div onClick={() => setSearchValue("")}>
                   <XIcon className="w-6 text-white" />
                 </div>
-                <div>
+                <div onClick={toggleFilter}>
                   <AdjustmentsIcon className="w-6 text-white" />
                 </div>
               </div>
@@ -113,6 +121,7 @@ const SearchPage: NextPage = () => {
           </div>
         )}
       </div>
+      {isFilterOpen && <SearchFilter />}
     </>
   );
 };
