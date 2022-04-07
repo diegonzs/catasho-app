@@ -31,9 +31,9 @@ export const CategoryModal = NiceModal.create(({ name }) => {
       </div>
       <div className="grid grid-cols-2 grid-flow-row justify-center gap-y-12">
         {categories.map((category) => (
-          <Link href={`/category/${category.id}`}>
+          <Link href={`/category/${category.id}`} key={category.id}>
             <a>
-              <div onClick={() => modal.hide()} key={category.id}>
+              <div onClick={() => modal.hide()}>
                 <CategoryBox
                   label={category.label}
                   category={category.id}
