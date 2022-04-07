@@ -1,5 +1,6 @@
-import clsx, { ClassValue } from "clsx";
+import { ClassValue } from "clsx";
 import { FC } from "react";
+import { classNames } from "utils/class-names";
 
 interface BodyProps {
   className?: ClassValue;
@@ -14,7 +15,7 @@ export const Body: FC<BodyProps> = ({
   className,
 }) => {
   return (
-    <p className={clsx(type === "2" ? "text-xs" : "text-sm", className)}>
+    <p className={classNames(type === "2" ? "text-xs" : "text-sm", className)}>
       {children || content || ""}
     </p>
   );

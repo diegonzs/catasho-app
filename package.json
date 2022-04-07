@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ebay/nice-modal-react": "^1.2.2",
     "@heroicons/react": "^1.0.6",
     "autoprefixer": "^10.4.4",
     "clsx": "^1.1.1",

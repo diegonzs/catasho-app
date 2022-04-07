@@ -38,6 +38,11 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@ebay/nice-modal-react@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@ebay/nice-modal-react/-/nice-modal-react-1.2.2.tgz#e61a4cdbe098314e2cd5d5236225de961700180f"
+  integrity sha512-d88LuLoUQOT796m77qYp3Ke0xg//Nr8jfbbL77fm4kC9wtUmcz0HQqVnk+GC1A0hOBgYWKfq0OoMXrKt3mEAVA==
+
 "@eslint/eslintrc@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-1.2.1.tgz#8b5e1c49f4077235516bc9ec7d41378c0f69b8c6"
