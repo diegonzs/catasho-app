@@ -3,6 +3,7 @@ import { Hero } from "components/hero";
 import { ProductItem } from "components/product-item";
 import { Body, Title } from "components/typography";
 import type { NextPage } from "next";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   return (
@@ -15,7 +16,11 @@ const Home: NextPage = () => {
               content="Descuentos"
               className="text-secondary-dark text-[18px]"
             />
-            <Body content="Ver todo" className="text-primary-two" />
+            <Link href="/category/example">
+              <a>
+                <Body content="Ver todo" className="text-primary-two" />
+              </a>
+            </Link>
           </div>
           <div className="grid grid-flow-col gap-4 justify-start overflow-hidden overflow-x-auto pb-8">
             <FeatureCard
